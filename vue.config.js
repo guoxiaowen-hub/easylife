@@ -1,5 +1,6 @@
 module.exports = {
   configureWebpack: {
+
     resolve: {
       alias: {
         'assets': '@/assets',
@@ -9,5 +10,8 @@ module.exports = {
         'views': '@/views',
       }
     }
-  }
+  },
+  devServer: {// 环境配置
+    open: true, //配置自动启动浏览器
+  },
 }
