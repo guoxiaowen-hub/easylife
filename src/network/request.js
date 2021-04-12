@@ -6,16 +6,16 @@ export function request(config){
     timeout: 5000
   })
 
-  instance.interceptors.request.use(config => {
-    return config;
-  }, error =>{
-    console.log(error);
-  });
-  instance.interceptors.response.use(res => {
-    return res.data
-  }, err => {
-    console.log(err);
-  });
+  // instance.interceptors.request.use(config => {
+  //   return config;
+  // }, error =>{
+  //   console.log(error);
+  // });
+  // instance.interceptors.response.use(res => {
+  //   return res.data
+  // }, err => {
+  //   console.log(err);
+  // });
 
   return instance(config)
 }

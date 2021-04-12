@@ -1,7 +1,7 @@
 <template>
-  <div class="goods">
-    <goods-list-item v-for="item in goods" :goodsItem="item"/>
-  </div>
+    <div class="goods">
+      <goods-list-item v-for="item in goods" :goodsItem="item"/>
+    </div>
 </template>
 
 <script>
@@ -19,6 +19,9 @@
     },
     components:{
       GoodsListItem
+    },
+    mounted() {
+
     }
   }
 </script>
@@ -29,5 +32,7 @@
     padding: 5px 1px;
     display: flex;
     flex-wrap: wrap;
+
+    overflow: hidden;
   }
 </style>
