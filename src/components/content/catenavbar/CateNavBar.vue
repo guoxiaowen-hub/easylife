@@ -181,7 +181,6 @@
 
 <style scoped>
 #nav-bar-swiper {
-  position: relative;
   background-color: #FFFFFF;
 }
 
@@ -197,9 +196,9 @@
 .indicator {
   display: flex;
   justify-content: center;
-  position: absolute;
   width: 100%;
-  bottom: -10px;
+  margin-top: 2px;
+  margin-bottom: 8px;
 }
 
 .indi-item {
