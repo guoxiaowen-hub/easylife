@@ -11,6 +11,16 @@
   import BScroll from "better-scroll"
   export default {
     name: "Scroll.vue",
+    props: {
+      probeType: {
+        type: Number,
+        default: 0
+      },
+      pullUpLoad: {
+        type: Boolean,
+        default: false,
+      }
+    },
     data() {
       return {
         scroll: null
@@ -18,13 +28,29 @@
     },
     mounted() {
       this.scroll = new BScroll(this.$refs.wrapper, {
+        probeType: this.probeType,
         observeDOM: true,
-        click: true
+        click: true,
+        pullUpLoad: this.pullUpLoad
       });
+
+      //滚动事件监听
+      this.scroll.on('scroll',(position) => {
+        console.log(position);
+        this.$emit('scroll',position)
+      });
+
+      //上拉加载事件监听
+      this.scroll.on('pullingUp',() => {
+        this.$emit('pullingUp')
+      })
     },
     methods: {
       scrollTo(x, y, time = 1000) {
         this.scroll.scrollTo(x, y, time)
+      },
+      finishPullUp() {
+        this.scroll.finishPullUp()
       }
     }
   }

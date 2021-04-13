@@ -1,16 +1,28 @@
 <template>
   <div id="home">
-    <back-top class="top" @click.native="backClick"/>
+    <back-top class="top" @click.native="backClick" v-show="isShowBackTop"/>
     <!--上部导航栏-->
     <home-nav-bar/>
-    <scroll class="scroll" ref="scroll">
+    <tab-control :titles="tabTitles"
+                 class="fixed"
+                 @tabClick="tabClick"
+                 ref="tabcontrol2"
+                 v-show="isTabShow"/>
+    <scroll class="scroll"
+            ref="scroll"
+            :probe-type="3"
+            :pull-up-load="true"
+            @scroll="contentScroll"
+            @pulling-up="loadMore">
       <!--轮播图-->
-      <home-swiper :banners="banners"/>
+      <home-swiper :banners="banners" @swiperImgLoad="swiperImgLoad"/>
       <!--分类轮播图-->
       <home-cate-nav-bar/>
       <!-- --商品展示区-- -->
       <!--控制导航栏-->
-      <tab-control :titles="tabTitles" @tabClick="tabClick"/>
+      <tab-control :titles="tabTitles"
+                   @tabClick="tabClick"
+                   ref="tabcontrol1"/>
       <!--商品列表-->
       <goods-list :goods="goods[currentType].list"/>
     </scroll>
@@ -40,7 +52,10 @@
           'new' : {page: 0, list: []},
           'sell' : {page: 0, list: []},
         },
-        currentType: 'pop'
+        currentType: 'pop',
+        isShowBackTop: false,
+        tabOffsetTop: 0,
+        isTabShow: false
       }
     },
     components: {
@@ -61,6 +76,8 @@
       this.handleGoods('new');
       this.handleGoods('sell');
     },
+    mounted() {
+    },
     methods: {
       /**
       * 事件监听
@@ -77,9 +94,33 @@
             this.currentType = 'sell';
             break
         }
+        this.$refs.tabcontrol1.currentIndex = index;
+        this.$refs.tabcontrol2.currentIndex = index;
       },
       backClick() {
         this.$refs.scroll.scrollTo(0, 0)
+      },
+      contentScroll(position) {
+        //判断backtop是否显示
+        if((-position.y) > 800){
+          this.isShowBackTop = true;
+        }
+        else {
+          this.isShowBackTop = false;
+        }
+
+        if((-position.y) <= this.tabOffsetTop - 44){
+          this.isTabShow = false;
+        }
+        else {
+          this.isTabShow = true;
+        }
+      },
+      loadMore() {
+        this.handleGoods(this.currentType);
+      },
+      swiperImgLoad() {
+        this.tabOffsetTop = this.$refs.tabcontrol1.$el.offsetTop;
       },
 
       /**
@@ -95,6 +136,7 @@
         getHomeGoods(type, page).then(res => {
           this.goods[type].list.push(...res.data.data.list);
           this.goods[type].page += 1;
+          this.$refs.scroll.finishPullUp();
         })
       },
     }
@@ -112,6 +154,14 @@
   }
 
   .top {
+    z-index: 999;
+  }
+
+  .fixed {
+    position: fixed;
+    top: 44px;
+    left: 0px;
+    right: 0px;
     z-index: 999;
   }
 </style>

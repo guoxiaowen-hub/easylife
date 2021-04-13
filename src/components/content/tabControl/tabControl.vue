@@ -45,9 +45,6 @@
   text-align: center;
   padding: 5px;
   border-top: 1px solid rgba(135,147,154,0.1);
-
-  position: sticky;
-  top: 0px;
 }
 
 .tab-control > .tab-control-item {
