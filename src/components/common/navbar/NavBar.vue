@@ -14,7 +14,7 @@
 
 <script>
   export default {
-    name: "NavBar"
+    name: "NavBar",
   }
 </script>
 
@@ -28,12 +28,10 @@
   .left,
   .right{
     width: 60px;
-    background-color: #ff5777;
   }
 
   .center {
     flex: 1;
-    background-color: #ff5777;
     text-align: center;
   }
 </style>
