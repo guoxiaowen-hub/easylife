@@ -36,7 +36,6 @@
 
       //滚动事件监听
       this.scroll.on('scroll',(position) => {
-        console.log(position);
         this.$emit('scroll',position)
       });
 
