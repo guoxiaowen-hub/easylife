@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import detail from "@/views/detail/detail";
 
 const  Home = () => import('../views/home/home')
 const  Category = () => import('../views/category/category')
@@ -28,6 +29,7 @@ const routes = [
     component: Profile
   },
   {
+    name: detail,
     path: '/detail/:id',
     component: Detail
   }

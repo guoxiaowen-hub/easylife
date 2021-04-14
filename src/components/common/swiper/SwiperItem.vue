@@ -15,6 +15,5 @@
     width: 100vw;
     height: 390px;
     flex-shrink: 0;
-    height: calc(100vw / 1.92);
   }
 </style>

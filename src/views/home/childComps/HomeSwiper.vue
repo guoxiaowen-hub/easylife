@@ -1,5 +1,5 @@
 <template>
-  <swiper>
+  <swiper class="home-swiper">
     <swiper-item v-for="item in banners">
       <a :href="item.link">
         <img class="swi-img" :src="item.image" alt="" @load="imgLoad">
@@ -39,6 +39,10 @@
 </script>
 
 <style scoped>
+  .home-swiper {
+    height: calc(100vw / 1.92);
+  }
+
   .swi-img {
     width: 100vw;
     height: calc(100vw / 1.92);
