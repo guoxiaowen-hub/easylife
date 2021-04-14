@@ -12,6 +12,6 @@ module.exports = {
     }
   },
   devServer: {// 环境配置
-    open: true, //配置自动启动浏览器
+    open: false, //配置自动启动浏览器
   },
 }

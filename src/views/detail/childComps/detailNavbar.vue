@@ -9,7 +9,7 @@
       <template #center>
         <div class="detail-nav-bar-center">
           <div class="item-title"
-               :class="{active: index === currentIndex}"
+               :class="{active: index === $parent.currentIndex}"
                @click="itemClick(index)"
                v-for="(item, index) in titles">{{item}}</div>
         </div>
@@ -34,7 +34,7 @@
     },
     methods: {
       itemClick(index) {
-        this.currentIndex = index;
+        this.$emit('navClick', index)
       },
       backClick() {
         this.$router.back();

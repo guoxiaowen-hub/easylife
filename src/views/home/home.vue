@@ -1,6 +1,8 @@
 <template>
   <div id="home">
-    <back-top class="top" @click.native="backClick" v-show="isShowBackTop"/>
+    <back-top class="top"
+              @click.native="backClick"
+              v-show="isShowBackTop"/>
     <!--上部导航栏-->
     <home-nav-bar/>
     <tab-control :titles="tabTitles"

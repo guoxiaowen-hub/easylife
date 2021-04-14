@@ -8,7 +8,7 @@
         <span class="n-price">{{goods.newPrice}}</span>
         <span class="o-price">{{goods.oldPrice}}</span>
       </div>
-      <div class="discount">{{goods.discount}}</div>
+      <div class="discount" v-if="goods.discount != ''">{{goods.discount}}</div>
     </div>
     <div class="info-other">
       <span>{{goods.colunms[0]}}</span>
@@ -39,7 +39,7 @@
       click() {
         console.log(this.goods);
       }
-    }
+    },
   }
 </script>
 
@@ -49,6 +49,7 @@
   font-size: 16px;
   font-weight: bold;
   margin: 10px 1px 1px;
+  padding: 0px 6px;
 }
 
 .info-price {
@@ -84,6 +85,7 @@
   font-size : 14px;
   margin-top: 10px;
   border-bottom: 1px solid rgba(135,147,154,0.1);
+  padding: 0px 6px;
 }
 
 .info-service {
