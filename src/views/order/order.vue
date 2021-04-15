@@ -1,11 +1,18 @@
 <template>
-  <h2>订单</h2>
+  <div id="order">
+    <order-nav-bar></order-nav-bar>
+  </div>
 </template>
 
 <script>
-export default {
-  name: "cart"
-}
+  import OrderNavBar from "views/order/childComps/OrderNavBar";
+
+  export default {
+    name: "order",
+    components: {
+      OrderNavBar
+    }
+  }
 </script>
 
 <style scoped>

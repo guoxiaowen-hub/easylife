@@ -12,6 +12,7 @@
       <detail-comment ref="comment"/>
       <detail-goods-info ref="detail" :goodsInfo="detailInfo"/>
     </scroll>
+    <detail-bottom-bar class="bottom-bar"></detail-bottom-bar>
   </div>
 </template>
 
@@ -20,8 +21,9 @@
   import DetailSwiper from "views/detail/childComps/DetailSwiper";
   import DetailBaseInfo from "views/detail/childComps/DetailBaseInfo";
   import DetailShopInfo from "views/detail/childComps/DetailShopInfo";
-  import DetailComment from "@/views/detail/childComps/DetailComment";
-  import DetailGoodsInfo from "@/views/detail/childComps/DetailGoodsInfo";
+  import DetailComment from "views/detail/childComps/DetailComment";
+  import DetailGoodsInfo from "views/detail/childComps/DetailGoodsInfo";
+  import DetailBottomBar from "views/detail/childComps/DetailBottomBar";
 
   import Scroll from "components/common/scroll/Scroll";
 
@@ -48,7 +50,8 @@
       DetailShopInfo,
       DetailComment,
       DetailGoodsInfo,
-      Scroll
+      Scroll,
+      DetailBottomBar
     },
     created() {
       this.iid = this.$route.params.id;
@@ -58,17 +61,16 @@
       //目前的误差90左右
       this.CommentOffsetTop = this.$refs.comment.$el.offsetTop;
       this.DetailOffsetTop = this.CommentOffsetTop + this.$refs.comment.$el.offsetHeight;
-      console.log(this.$refs.navbar)
     },
     methods: {
       /**
        * 监听事件
        */
       contentScroll(position) {
-        if( position.y < -this.DetailOffsetTop) {
+        if( position.y <= -this.DetailOffsetTop-40) {
           this.currentIndex = 2;
         }
-        else if( position.y < -this.CommentOffsetTop) {
+        else if( position.y <= -this.CommentOffsetTop) {
           this.currentIndex = 1;
         }
         else {
@@ -87,7 +89,7 @@
             break;
           case 2 :
             this.currentIndex = 2
-            this.$refs.scroll.scrollTo(0,-this.DetailOffsetTop)
+            this.$refs.scroll.scrollTo(0,-this.DetailOffsetTop-40)
             break;
         }
       },
@@ -123,7 +125,15 @@
 }
 
 .scroll {
-  height: calc(100vh - 43px);
+  height: calc(100vh - 88px);
   overflow: hidden;
+}
+
+.bottom-bar {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  z-index: 999;
 }
 </style>

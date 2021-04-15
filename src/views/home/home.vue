@@ -150,16 +150,18 @@
     height: 100vh;
   }
 
-  .scroll {
-    height: calc(100vh - 93px);
-    overflow: hidden;
-  }
 
   .top {
     z-index: 999;
   }
 
+  .scroll {
+    height: calc(100vh - 44px);
+    overflow: hidden;
+  }
+
   .fixed {
+    height: 30px;
     position: fixed;
     top: 44px;
     left: 0px;

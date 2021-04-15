@@ -85,7 +85,7 @@
   font-size : 14px;
   margin-top: 10px;
   border-bottom: 1px solid rgba(135,147,154,0.1);
-  padding: 0px 6px;
+  padding: 1px 6px;
 }
 
 .info-service {

@@ -2,7 +2,7 @@
   <div class="tab-control">
     <div class="tab-control-item"
          :class="{active : index == currentIndex,
-                  borderRight : index!= item.length}"
+                  borderRight : index != titles.length - 1}"
          @click="itemClick(index)"
          :key="item"
          v-for="(item, index) in titles">
@@ -43,7 +43,7 @@
   background-color: #FFFFFF;
   display: flex;
   text-align: center;
-  padding: 5px;
+  padding: 5px 5px 3px;
   border-top: 1px solid rgba(135,147,154,0.1);
 }
 
@@ -53,7 +53,7 @@
 }
 
 .active > span {
-  padding: 5px;
+  padding: 5px 5px 3px;
   color: var(--color-high-text);
   border-bottom: 3px solid var(--color-tint);
 }
