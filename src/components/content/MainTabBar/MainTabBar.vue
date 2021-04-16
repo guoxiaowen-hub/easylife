@@ -22,7 +22,7 @@
         <div>分类</div>
       </template>
     </tab-bar-item>
-    <tab-bar-item path="/order" activeColor="#D4237A">
+    <tab-bar-item path="/myorder" activeColor="#D4237A">
       <template #item-icon>
         <img class="img" src="~assets/img/tabbar/order.png">
       </template>

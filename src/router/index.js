@@ -3,9 +3,11 @@ import detail from "@/views/detail/detail";
 
 const  Home = () => import('../views/home/home')
 const  Category = () => import('../views/category/category')
-const  Order = () => import('../views/order/order')
+const  MyOrder = () => import('../views/myorder/myorder')
 const  Profile = () => import('../views/profile/profile')
 const  Detail = () => import('../views/detail/detail')
+
+const Login = () => import('../views/login/login')
 
 const routes = [
   {
@@ -21,12 +23,18 @@ const routes = [
     component: Category
   },
   {
-    path: '/order',
-    component: Order
+    path: '/myorder',
+    component: MyOrder
   },
   {
     path: '/profile',
-    component: Profile
+    component: Profile,
+    children: [
+      {
+        path: 'login',
+        component: Login
+      }
+    ]
   },
   {
     name: detail,
