@@ -13,5 +13,6 @@ module.exports = {
   },
   devServer: {// 环境配置
     open: false, //配置自动启动浏览器
+    port: 8081
   },
 }

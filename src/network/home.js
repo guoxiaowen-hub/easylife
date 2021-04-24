@@ -1,4 +1,4 @@
-import {request} from "./request"
+import {request,request1} from "./request"
 
 export function getHomeMultidata() {
   return request({
@@ -13,5 +13,11 @@ export function getHomeGoods(type, page) {
       type,
       page,
     }
+  })
+}
+
+export function getHomeDeals(page) {
+  return request1({
+    url: "/home/dealList/"+ page,
   })
 }

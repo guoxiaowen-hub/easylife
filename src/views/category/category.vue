@@ -19,7 +19,7 @@
   import tabControl from "components/content/tabControl/tabControl";
   import GoodsList from "components/content/goods/GoodsList";
 
-  import {getCategoryGoods} from "network/Category";
+  import {getCategoryGoods} from "network/category";
 
   export default {
     name: "category",

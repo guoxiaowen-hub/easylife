@@ -9,3 +9,5 @@ export function getCategoryGoods(type, page) {
     }
   })
 }
+
+

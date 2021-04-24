@@ -3,8 +3,10 @@
     <bottom-bar>
       <template #left>
           <bottom-bar-item>
-            <img class="bar-img" src="~assets/img/detail/bottombar/shop.png" alt="">
-            <div class="bar-text">店铺</div>
+            <div @click="shopIn">
+              <img class="bar-img" src="~assets/img/detail/bottombar/shop.png" alt="">
+              <div class="bar-text">店铺</div>
+            </div>
           </bottom-bar-item>
           <bottom-bar-item>
             <img class="bar-img" src="~assets/img/detail/bottombar/feedback.png" alt="">
@@ -12,7 +14,7 @@
           </bottom-bar-item>
       </template>
       <template #right>
-        <div class="bar-buy">
+        <div class="bar-buy" @click="buy">
           <div>￥</div>
           <div>立即抢购</div>
         </div>
@@ -23,11 +25,38 @@
 
 <script>
   import {BottomBar, BottomBarItem} from "components/content/bottombar"
+  import {Order} from "network/detail";
+
   export default {
     name: "DetailBottomBar",
+    data() {
+      return {
+        order: null,
+      }
+    },
     components: {
       BottomBar,
       BottomBarItem
+    },
+    methods: {
+      shopIn() {
+        this.$router.push('/shop')
+      },
+      buy() {
+        this.$router.push({
+          path: '/neworder',
+          query: {
+            shopName : this.$parent.ShopInfo.name,
+            shopLogo : this.$parent.ShopInfo.shopLogo,
+            shopId : this.$parent.ShopInfo.shopId,
+            price : this.$parent.GoodsInfo.realPrice,
+            goodsName : this.$parent.GoodsInfo.title,
+            goodsImg : this.$parent.topImages[0],
+            goodsId : this.$parent.iid,
+            num : 1,
+          }
+        })
+      }
     }
   }
 </script>
@@ -37,6 +66,9 @@
   height: 44px;
   width: 100vw;
   background-color: #FFFFFF;
+  position: absolute;
+  bottom: 0px;
+  padding: 0px 5px;
 }
 
 .bar-img {
@@ -49,7 +81,6 @@
 .bar-text {
   flex: 1;
   text-align: center;
-  height: 49px;
   font-size: 10px;
 }
 

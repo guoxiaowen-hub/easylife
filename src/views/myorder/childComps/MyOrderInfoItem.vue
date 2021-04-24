@@ -3,9 +3,6 @@
     <div class="order-title">
       <img class="shop-logo" :src="order.shopLogo" alt="">
       <div class="shop-name">{{order.shopName}}</div>
-      <div class="order-finish-state" v-if="order.state == 0">已完成</div>
-      <div class="order-finish-state ing" v-if="order.state == 1">进行中</div>
-      <div class="order-finish-state" v-if="order.state == 2">已取消</div>
     </div>
     <div class="order-base-info">
       <div>
@@ -18,10 +15,10 @@
       </div>
     </div>
     <div class="order-botton">
-      <div v-if="order.orderType == 0">待付款</div>
-      <div v-if="order.orderType == 1">待使用</div>
-      <div v-if="order.orderType == 2">待评价</div>
-      <div v-if="order.orderType == 3">再来一单</div>
+      <div v-if="order.orderState == 1" @click="orderClick">待付款</div>
+      <div v-if="order.orderState == 2" @click="orderClick">待使用</div>
+      <div v-if="order.orderState == 3" @click="orderClick">待评价</div>
+      <div v-if="order.orderState == 4" @click="orderClick">已完成</div>
     </div>
   </div>
 </template>
@@ -39,7 +36,12 @@
     },
     computed: {
       price() {
-        return this.order.price.toFixed(1)
+        return this.order.total.toFixed(2)
+      }
+    },
+    methods: {
+      orderClick() {
+        this.$router.push('/order/'+ this.order.orderId)
       }
     }
   }

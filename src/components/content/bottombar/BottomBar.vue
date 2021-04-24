@@ -19,5 +19,6 @@
   .bottom-bar{
     box-shadow: 0px -3px 1px rgba(100,100,100,0.1);
     display: flex;
+    justify-content: space-between;
   }
 </style>

@@ -1,7 +1,8 @@
  <template>
   <div id="profile">
     <div class="top-box">
-      <profile-info :userId="profile.myId"
+      <profile-info @login="login"
+                    :userId="profile.myId"
                     :userName="profile.myName"
                     :userImg="profile.myImg"/>
       <profile-function />
@@ -17,11 +18,20 @@
   import ProfileFunction from "views/profile/childComps/ProfileFunction";
   import ProfileOrderBar from "views/profile/childComps/ProfileOrderBar";
 
+  import myprofile from 'assets/test/test'
+
   export default {
     name: "profile",
     data() {
       return{
         profile: {}
+      }
+    },
+    methods: {
+      login() {
+        this.$store.commit('login', myprofile);
+        this.profile = this.$store.state.profile;
+        this.$router.replace('/profile')
       }
     },
     components: {

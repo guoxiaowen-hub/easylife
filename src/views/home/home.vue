@@ -1,15 +1,9 @@
 <template>
   <div id="home">
+    <home-nav-bar />
     <back-top class="top"
               @click.native="backClick"
               v-show="isShowBackTop"/>
-    <!--上部导航栏-->
-    <home-nav-bar/>
-    <tab-control :titles="tabTitles"
-                 class="fixed"
-                 @tabClick="tabClick"
-                 ref="tabcontrol2"
-                 v-show="isTabShow"/>
     <scroll class="scroll"
             ref="scroll"
             :probe-type="3"
@@ -21,12 +15,7 @@
       <!--分类轮播图-->
       <home-cate-nav-bar/>
       <!-- --商品展示区-- -->
-      <!--控制导航栏-->
-      <tab-control :titles="tabTitles"
-                   @tabClick="tabClick"
-                   ref="tabcontrol1"/>
-      <!--商品列表-->
-      <goods-list :goods="goods[currentType].list"/>
+      <deal-list :dealList="dealList"/>
     </scroll>
   </div>
 </template>
@@ -36,24 +25,19 @@
   import HomeSwiper from "views/home/childComps/HomeSwiper";
   import HomeCateNavBar from "views/home/childComps/HomeCateNavBar";
 
-  import tabControl from "components/content/tabControl/tabControl";
-  import GoodsList from "components/content/goods/GoodsList";
   import BackTop from "components/content/backtop/BackTop";
   import Scroll from "components/common/scroll/Scroll";
+  import DealList from "components/content/deal/DealList";
 
   import {getHomeMultidata,getHomeGoods} from "network/home";
+  import {getHomeDeals} from "@/network/home";
 
   export default {
     name: "home",
     data() {
       return {
         banners: [],
-        tabTitles: ['流行','新款','精选'],
-        goods: {
-          'pop' : {page: 0, list: []},
-          'new' : {page: 0, list: []},
-          'sell' : {page: 0, list: []},
-        },
+        dealList: [],
         currentType: 'pop',
         isShowBackTop: false,
         tabOffsetTop: 0,
@@ -63,9 +47,8 @@
     components: {
       HomeNavBar,
       HomeSwiper,
+      DealList,
       HomeCateNavBar,
-      tabControl,
-      GoodsList,
       Scroll,
       BackTop
     },
@@ -74,9 +57,8 @@
       this.handleMultidata();
 
       //2.请求商品数据
-      this.handleGoods('pop');
-      this.handleGoods('new');
-      this.handleGoods('sell');
+      this.handleGoods();
+
     },
     mounted() {
     },
@@ -84,21 +66,6 @@
       /**
       * 事件监听
       */
-      tabClick(index) {
-        switch (index) {
-          case 0:
-            this.currentType = 'pop';
-            break;
-          case 1:
-            this.currentType = 'new';
-            break;
-          case 2:
-            this.currentType = 'sell';
-            break
-        }
-        this.$refs.tabcontrol1.currentIndex = index;
-        this.$refs.tabcontrol2.currentIndex = index;
-      },
       backClick() {
         this.$refs.scroll.scrollTo(0, 0)
       },
@@ -122,7 +89,6 @@
         this.handleGoods(this.currentType);
       },
       swiperImgLoad() {
-        this.tabOffsetTop = this.$refs.tabcontrol1.$el.offsetTop;
       },
 
       /**
@@ -134,11 +100,9 @@
         })
       },
       handleGoods(type) {
-        const page = this.goods[type].page + 1
-        getHomeGoods(type, page).then(res => {
-          this.goods[type].list.push(...res.data.data.list);
-          this.goods[type].page += 1;
-          this.$refs.scroll.finishPullUp();
+        getHomeDeals(1).then(res => {
+          this.dealList.push(...res.data);
+          console.log(this.dealList);
         })
       },
     }

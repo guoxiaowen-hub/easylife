@@ -2,7 +2,7 @@
   <div id="myorder">
     <my-order-nav-bar class="nav-bar"/>
 
-    <tab-control class="tab-control"
+    <my-order-tab-control class="tab-control"
                  @tabClick="tabClick"
                  :titles="titles"/>
     <scroll class="scroll"
@@ -16,15 +16,15 @@
 <script>
   import MyOrderNavBar from "views/myorder/childComps/MyOrderNavBar";
   import MyOrderInfo from "views/myorder/childComps/MyOrderInfo";
+  import myOrderTabControl from "views/myorder/childComps/myOrderTabControl";
 
-  import tabControl from "components/content/tabControl/tabControl";
   import Scroll from "components/common/scroll/Scroll";
 
   export default {
     name: "order",
     data() {
       return {
-        titles: ['全部','待付款','待使用','待评价(1)'],
+        titles: ['全部','待付款','待使用','待评价','已完成'],
         OrderInfo: [],
         currentType: 0
       }
@@ -32,11 +32,11 @@
     components: {
       MyOrderNavBar,
       MyOrderInfo,
-      tabControl,
+      myOrderTabControl,
       Scroll
     },
     created() {
-      this.OrderInfo = this.$store.state.cheatOrder
+      this.OrderInfo = this.$store.state.Order
       this.titles[3] = '待评价(' + this.OrderInfo[3].list.length + ')'
     },
     methods: {

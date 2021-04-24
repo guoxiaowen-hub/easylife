@@ -1,16 +1,30 @@
 <template>
   <div id="login">
     <login-nav-bar />
+    <login-base @login="login"
+                @signin="signin"/>
   </div>
 </template>
 
 <script>
   import LoginNavBar from "views/login/childComps/LoginNavBar";
+  import LoginBase from "views/login/childComps/LoginBase";
 
   export default {
     name: "login",
     components: {
-      LoginNavBar
+      LoginNavBar,
+      LoginBase
+    },
+    methods: {
+      login(user, password) {
+        console.log(user, password);
+        this.$emit('login', user, password);
+        this.$router.replace('/profile')
+      },
+      signin(user, password) {
+        console.log("signin", user, password);
+      }
     }
   }
 </script>

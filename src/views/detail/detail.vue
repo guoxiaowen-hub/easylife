@@ -118,22 +118,15 @@
 
 <style scoped>
 #detail {
+  width: 100vw;
   height: 100vh;
-  position: relative;
+  position: absolute;
   z-index: 100;
   background-color: #FFFFFF;
 }
 
 .scroll {
-  height: calc(100vh - 88px);
+  height: calc(100vh - 89px);
   overflow: hidden;
-}
-
-.bottom-bar {
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-  left: 0px;
-  z-index: 999;
 }
 </style>

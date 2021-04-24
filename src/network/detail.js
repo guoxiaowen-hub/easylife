@@ -24,6 +24,7 @@ export class GoodsInfo {
 
 export class ShopInfo {
   constructor(shopInfo) {
+    this.shopId = shopInfo.shopId
     this.shopLogo = shopInfo.shopLogo
     this.name = shopInfo.name
     this.Goods = shopInfo.cGoods

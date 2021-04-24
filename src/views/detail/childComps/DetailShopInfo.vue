@@ -6,7 +6,7 @@
       <div class="shop-goods">商品数量 {{shop.Goods}}</div>
     </div>
 
-    <div class="shop-button">
+    <div class="shop-button" @click="shopIn">
       进店逛逛
     </div>
   </div>
@@ -21,6 +21,11 @@
         default() {
           return {}
         }
+      }
+    },
+    methods: {
+      shopIn() {
+        this.$router.push('/shop')
       }
     }
   }

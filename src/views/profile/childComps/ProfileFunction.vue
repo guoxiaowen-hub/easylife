@@ -9,16 +9,39 @@
       <div>评价</div>
     </div>
     <div class="setting">
-      <img src="~assets/img/profile/setting.png" alt="">
+      <img @click="settingClick" src="~assets/img/profile/setting.png" alt="">
       <div>设置</div>
     </div>
+    <toast class="toast" message="请先登录" :isShow="toastIsShow"/>
   </div>
 </template>
 
 <script>
-export default {
-  name: "ProfileFunction"
-}
+  import Toast from "@/components/common/toast/Toast";
+  export default {
+    name: "ProfileFunction",
+    data() {
+      return {
+        toastIsShow: false
+      }
+    },
+    components: {
+      Toast
+    },
+    methods: {
+      settingClick() {
+        if(Object.keys(this.$store.state.profile).length !== 0){
+          this.$router.push('/profile/setting')
+        }
+        else {
+          this.toastIsShow = true;
+          setTimeout(() => {
+            this.toastIsShow = false;
+          }, 1000)
+        }
+      }
+    }
+  }
 </script>
 
 <style scoped>
@@ -54,4 +77,5 @@ export default {
   font-size: 15px;
   color: #FFFFFF;
 }
+
 </style>

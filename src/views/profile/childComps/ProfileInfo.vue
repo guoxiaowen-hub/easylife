@@ -1,8 +1,8 @@
 <template>
   <div class="profile-info">
-    <router-view></router-view>
+    <router-view @login="login"/>
     <div v-if="userId == -1">
-      <div class="container" @click="loginClick">
+      <div class="container" @click="Click">
         <div class="my-img">
           <img src="~assets/img/userImg.jpg" alt="">
         </div>
@@ -32,8 +32,11 @@
       },
     },
     methods: {
-      loginClick() {
+      Click() {
         this.$router.push('/profile/login')
+      },
+      login() {
+        this.$emit('login')
       }
     }
   }
