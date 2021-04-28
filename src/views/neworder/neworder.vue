@@ -1,7 +1,7 @@
 <template>
   <div class="new-order">
     <new-order-nav-bar/>
-    <new-order-address/>
+    <new-order-address v-if="order.orderType == 1"/>
     <new-order-base-info :order="order" @sub="sub" @add="add"/>
     <new-order-bottom-bar :order="order" @subOrder="subOrder"/>
   </div>
@@ -30,19 +30,19 @@
       },
       subOrder() {
         this.order['total'] = this.order.num * this.order.price;
-        console.log(this.order);
-        this.$store.commit('subOrder', this.order)
-        this.$router.replace('/myorder')
+        this.$store.dispatch('subOrder', this.order).then(res => {
+          this.$router.replace('/myorder')
+        })
       }
+    },
+    created() {
+      this.order = new Order(this.$route.query);
     },
     components: {
       NewOrderNavBar,
       NewOrderAddress,
       NewOrderBaseInfo,
       NewOrderBottomBar
-    },
-    created() {
-      this.order = new Order(this.$route.query);
     }
   }
 </script>

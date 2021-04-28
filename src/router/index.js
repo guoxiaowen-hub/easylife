@@ -4,7 +4,9 @@ const Home = () => import('views/home/home')
 const Category = () => import('views/category/category')
 const MyOrder = () => import('views/myorder/myorder')
 const Profile = () => import('views/profile/profile')
+const Meishi = () => import('views/meishi/meishi')
 const Detail = () => import('views/detail/detail')
+const Deal = () => import('views/deal/deal')
 const Address = () => import('views/raddress/raddress')
 const Shop = () => import('views/shop/shop')
 const Order = () => import('views/order/order')
@@ -58,8 +60,16 @@ const routes = [
     ]
   },
   {
+    path: '/meishi/:id',
+    component: Meishi
+  },
+  {
     path: '/detail/:id',
     component: Detail
+  },
+  {
+    path: '/deal/:id',
+    component: Deal
   },
   {
     path: '/raddress',

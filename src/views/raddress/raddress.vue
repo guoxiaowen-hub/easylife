@@ -1,7 +1,7 @@
 <template>
   <div class="address">
     <r-address-nav-bar title="我的收货地址"/>
-    <r-address-item v-for="(item , index) in address" :address="item" :index="index" @AddressIndexChange="toast"/>
+    <r-address-item v-for="(item,index) in address" :address="item" :index="index" @AddressIndexChange="toast"/>
     <new-address @click="newClick"/>
     <toast message="默认地址已更改" :isShow="toastIsShow"/>
     <router-view/>

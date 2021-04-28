@@ -15,7 +15,7 @@
       <!--分类轮播图-->
       <home-cate-nav-bar/>
       <!-- --商品展示区-- -->
-      <deal-list :dealList="dealList"/>
+      <meishi-list :meishiList="meishiList"/>
     </scroll>
   </div>
 </template>
@@ -27,27 +27,25 @@
 
   import BackTop from "components/content/backtop/BackTop";
   import Scroll from "components/common/scroll/Scroll";
-  import DealList from "components/content/deal/DealList";
+  import MeishiList from "components/content/meishi/MeishiList";
 
-  import {getHomeMultidata,getHomeGoods} from "network/home";
-  import {getHomeDeals} from "@/network/home";
+  import {getHomeMultidata,getHomeMeishi} from "network/home";
 
   export default {
     name: "home",
     data() {
       return {
         banners: [],
-        dealList: [],
+        meishiList: [],
+        page: 1,
         currentType: 'pop',
         isShowBackTop: false,
-        tabOffsetTop: 0,
-        isTabShow: false
       }
     },
     components: {
       HomeNavBar,
       HomeSwiper,
-      DealList,
+      MeishiList,
       HomeCateNavBar,
       Scroll,
       BackTop
@@ -60,8 +58,6 @@
       this.handleGoods();
 
     },
-    mounted() {
-    },
     methods: {
       /**
       * 事件监听
@@ -71,22 +67,16 @@
       },
       contentScroll(position) {
         //判断backtop是否显示
-        if((-position.y) > 800){
+        if((-position.y) > 400){
           this.isShowBackTop = true;
         }
         else {
           this.isShowBackTop = false;
         }
 
-        if((-position.y) <= this.tabOffsetTop - 44){
-          this.isTabShow = false;
-        }
-        else {
-          this.isTabShow = true;
-        }
       },
       loadMore() {
-        this.handleGoods(this.currentType);
+        this.handleGoods()
       },
       swiperImgLoad() {
       },
@@ -99,10 +89,10 @@
           this.banners = res.data.data.banner.list;
         })
       },
-      handleGoods(type) {
-        getHomeDeals(1).then(res => {
-          this.dealList.push(...res.data);
-          console.log(this.dealList);
+      handleGoods() {
+        getHomeMeishi(this.page).then(res => {
+          this.page += 1;
+          this.meishiList.push(...res.data);
         })
       },
     }
@@ -122,14 +112,5 @@
   .scroll {
     height: calc(100vh - 44px);
     overflow: hidden;
-  }
-
-  .fixed {
-    height: 30px;
-    position: fixed;
-    top: 44px;
-    left: 0px;
-    right: 0px;
-    z-index: 999;
   }
 </style>

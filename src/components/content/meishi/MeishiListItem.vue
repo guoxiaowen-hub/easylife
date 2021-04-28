@@ -1,23 +1,24 @@
 <template>
   <div class="deal-list-item">
-    <div class="meishi-container" v-if="dealItem.type == 0">
+    <div class="meishi-container" v-if="meishiItem.type == 0" @click="dealClick(meishiItem.shopId)">
       <div>
-        <img class="img" :src="dealItem.shopImg" alt="">
+        <img class="img" :src="meishiItem.shopImg" alt="">
       </div>
       <div class="info">
         <div class="name">
-          {{dealItem.name}}
+          {{meishiItem.name}}
         </div>
         <div class="score">
-          <img src="~assets/img/dealList/start.png" alt="">
+          <img src="~assets/img/score/start.png" alt="">
           <div>
-            {{dealItem.score}}好店
+            {{meishiItem.score}}分好店
           </div>
         </div>
         <div class="address">
-          {{dealItem.address}}
+          {{meishiItem.address}}
         </div>
         <div class="price">
+          <span>人均</span>
           ￥{{avgPrice}}
         </div>
       </div>
@@ -29,7 +30,7 @@
   export default {
     name: "DealListItem",
     props: {
-      dealItem:  {
+      meishiItem:  {
         type: Object,
         default() {
           return {}
@@ -38,7 +39,12 @@
     },
     computed: {
       avgPrice() {
-        return this.dealItem.avgPrice.toFixed(2)
+        return this.meishiItem.avgPrice.toFixed(2)
+      }
+    },
+    methods: {
+      dealClick(shopId) {
+        this.$router.push('/meishi/'+ shopId)
       }
     }
   }
@@ -98,5 +104,10 @@
   .price {
     margin-top: 1px;
     color: #F2783A;
+  }
+
+  .price > span {
+    font-size: 13px;
+    color: #787878;
   }
 </style>

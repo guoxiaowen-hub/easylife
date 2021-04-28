@@ -6,17 +6,7 @@ export function getHomeMultidata() {
   })
 }
 
-export function getHomeGoods(type, page) {
-  return request({
-    url: "/home/data",
-    params: {
-      type,
-      page,
-    }
-  })
-}
-
-export function getHomeDeals(page) {
+export function getHomeMeishi(page) {
   return request1({
     url: "/home/dealList/"+ page,
   })

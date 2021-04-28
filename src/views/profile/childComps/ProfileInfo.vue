@@ -4,7 +4,7 @@
     <div v-if="userId == -1">
       <div class="container" @click="Click">
         <div class="my-img">
-          <img src="~assets/img/userImg.jpg" alt="">
+          <img src="~assets/test/userImg.jpg" alt="">
         </div>
         <div class="my-name">请先登录咕~</div>
       </div>
@@ -12,7 +12,7 @@
     <div v-else>
       <div class="container">
         <div class="my-img">
-          <img :src="userImg" alt="">
+          <img src="~assets/test/1.webp.jpg" alt="">
         </div>
         <div class="my-name">{{userName}}</div>
       </div>

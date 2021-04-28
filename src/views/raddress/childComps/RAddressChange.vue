@@ -81,20 +81,21 @@
     methods: {
       saveClick() {
         if (!this.isNew) {
-          this.$store.commit('addressChange', {
+          this.$store.dispatch('update', {
             index: this.index,
             address: this.address
+          }).then(res => {
+            this.$router.replace('/raddress')
           })
         }
         else {
-          this.$store.commit('addressAdd', this.address);
-          console.log(this.$store.state.profile.address);
+          this.$store.dispatch('update', {address : this.address});
           this.$router.replace('/raddress')
         }
       },
 
       deleteClick() {
-        this.$store.commit('addressDelete', this.index);
+        this.$store.dispatch('update', {index : this.index});
         this.$router.replace('/raddress')
       }
     }

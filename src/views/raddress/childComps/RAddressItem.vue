@@ -1,6 +1,6 @@
 <template>
   <div class="address-item">
-    <div @click="nAddressChange">
+    <div @click="addressIndexChange">
       <div class="user-info">
         <span>{{address.name}}</span>
         <span v-if="address.sex == 'man'">先生</span>
@@ -38,8 +38,8 @@
       changeClick() {
         this.$router.push('/raddress/addresschange/' + this.index)
       },
-      nAddressChange() {
-        this.$store.commit('AddressIndexChange', this.index)
+      addressIndexChange() {
+        this.$store.dispatch('update', {addressIndex : this.index})
         this.$emit('AddressIndexChange')
       }
     },

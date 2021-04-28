@@ -36,7 +36,8 @@
         </div>
       </div>
     </div>
-    <div class="send-info">
+    <!-- 电商地址 -->
+    <div class="send-info" v-if="orderInfo.orderType == 1">
       <div class="send-title">配送信息</div>
       <div class="address">
         <div>配送地址</div>
@@ -48,6 +49,25 @@
       <div class="send-method">
         <div>配送服务</div>
         <div class="text">默认快递</div>
+      </div>
+    </div>
+    <!--美食详情-->
+    <div class="detail" v-if="orderInfo.orderType == 0">
+      <div class="detail-title">美食详情</div>
+      <div class="detail-content" v-for="fItem in orderInfo.menu">
+        <div class="detail-content-title" v-if="fItem.length !== 1">
+          {{fItem[0].content}}
+        </div>
+        <div class="detail-content-right">
+          <div v-for="(sItem, sIndex) in fItem" >
+            <div v-if="sIndex !== 0">
+              <span>{{sItem.content}}</span>
+              <span>数量/规格{{sItem.specification}}</span>
+              <span>单价￥{{sItem.price}}</span>
+              <span>总计￥{{sItem.total}}</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <!--订单信息 -->
@@ -216,5 +236,38 @@
 
   .text {
     color: #000000;
+  }
+
+
+
+  /*美食详情块*/
+  .detail-title {
+    font-size: 16px;
+    color: #000000;
+    font-weight: bold;
+    padding: 10px 7px 7px;
+    border-bottom: 1px solid rgba(135,147,154,0.3);
+  }
+
+  .detail-content-title {
+    font-size: 14px;
+    color: #000000;
+    font-weight: bold;
+    margin-bottom: 3px;
+  }
+
+  .detail-content {
+    font-size: 10px;
+    padding: 7px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .detail-content-right span {
+    margin: 1px 3px;
+  }
+
+  .detail {
+    background-color: #FFFFFF;
+    margin: 7px;
   }
 </style>

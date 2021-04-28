@@ -1,13 +1,17 @@
-import {request} from "./request"
+import {request, request1} from "./request"
 
-export function getCategoryGoods(type, page) {
+export function getCategoryGoods(page) {
   return request({
     url: "/home/data",
     params: {
-      type,
+      type: 'pop',
       page,
     }
   })
 }
 
-
+export function getCategoryMeishi(page) {
+  return request1({
+    url: "/category/meishi/"+page,
+  })
+}

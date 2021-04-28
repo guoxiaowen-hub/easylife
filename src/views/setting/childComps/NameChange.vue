@@ -23,7 +23,7 @@
     },
     methods: {
       save() {
-        this.$store.commit('nameChange', this.name)
+        this.$store.dispatch('update', {name: this.name})
         this.$router.replace('/profile')
       }
     }

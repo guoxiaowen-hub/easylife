@@ -1,8 +1,11 @@
 <template>
   <div id="order">
     <order-nav-bar/>
-    <order-base-info :orderInfo="orderInfo"/>
-    <order-bottom :orderState="orderInfo.orderState" :orderIndex="orderIndex" @finish="finish"/>
+    <scroll :pull-up-load="true"
+            class="scroll">
+      <order-base-info :orderInfo="orderInfo"/>
+    </scroll>
+    <order-bottom :orderState="orderInfo.orderState" :orderId="orderInfo.orderId" @finish="finish"/>
     <toast message="订单已完成" :isShow="toastIsShow"/>
   </div>
 </template>
@@ -12,6 +15,8 @@
   import OrderBaseInfo from "views/order/childComps/OrderBaseInfo";
   import OrderBottom from "@/views/order/childComps/OrderBottom";
 
+  import Scroll from "components/common/scroll/Scroll";
+
   import Toast from "components/common/toast/Toast";
 
   export default {
@@ -20,7 +25,6 @@
       return {
         orderId: -1,
         orderInfo: {},
-        orderIndex: -1,
         toastIsShow: false
       }
     },
@@ -36,16 +40,17 @@
       OrderBottom,
       OrderNavBar,
       OrderBaseInfo,
+      Scroll,
       Toast
     },
     created() {
       this.orderId = this.$route.params.orderid;
       this.$store.state.Order[this.$store.state.myOrderCurrentIndex].list.forEach((item, index) =>{
         if(item.orderId == this.orderId) {
-          this.orderIndex = index
           this.orderInfo = item;
         }
       })
+      console.log(this.orderInfo);
     }
   }
 </script>
@@ -57,5 +62,10 @@
   background-color: #F4F4F4;
   position: relative;
   z-index: 999;
+}
+
+.scroll {
+  height: calc(100vh - 88px);
+  overflow: hidden;
 }
 </style>

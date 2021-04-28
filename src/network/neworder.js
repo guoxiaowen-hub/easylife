@@ -8,5 +8,7 @@ export class Order {
     this.goodsImg = querry.goodsImg
     this.goodsId = querry.goodsId
     this.num = querry.num
+    this.orderType = querry.orderType
+    this.menu = querry.menu
   }
 }

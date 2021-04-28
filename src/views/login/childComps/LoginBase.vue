@@ -7,13 +7,17 @@
       </div>
       <div class="bottom">
         <div class="table">
-          <div class="user-name">
-            <label for="username">账号: </label>
-            <input type="text" id="username" placeholder="请输入账号" v-model="user">
+          <div class="user">
+            <label for="user">账号: </label>
+            <input type="text" id="user" placeholder="请输入账号" v-model="user">
           </div>
           <div class="user-password">
             <label for="password">密码: </label>
             <input type="password" id="password" v-model="password">
+          </div>
+          <div class="user-password" v-if="currentIndex == 1">
+            <label for="password">昵称: </label>
+            <input type="text" id="name" v-model="name">
           </div>
           <div @click="loginClick" class="button" v-if="currentIndex == 0">
             登录
@@ -28,13 +32,15 @@
 </template>
 
 <script>
+  import {signIn} from "network/login"
   export default {
     name: "LoginBase",
     data() {
       return {
         currentIndex: 0,
         user: '',
-        password: ''
+        password: '',
+        name: ''
       }
     },
     methods: {
@@ -45,10 +51,21 @@
         this.currentIndex = 1
       },
       loginClick() {
-        this.$emit('login', this.user, this.password)
+        this.$store.dispatch('login', {
+          user: this.user,
+          password: this.password
+        }).then( res => {
+          this.$emit('login')
+        });
       },
       signinClick() {
-        this.$emit('signin', this.user, this.password);
+        signIn({
+          user: this.user,
+          password: this.password,
+          name: this.name,
+        }).then(res => {
+          console.log(res);
+        })
         this.currentIndex = 0
       }
     },
@@ -95,13 +112,13 @@
 
   .table {
     width: 80vw;
-    height: 170px;
     background-color: #ff5777;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+    padding-bottom: 11px;
   }
 
-  .user-name,
+  .user,
   .user-password {
     padding-top: 35px;
     color: #FFFFFF;
@@ -109,7 +126,7 @@
     padding-left: 14px;
   }
 
-  .user-name > input,
+  .user > input,
   .user-password > input {
     background-color: #ff5777;
     border: 0px;
@@ -117,18 +134,18 @@
     color: #FFFFFF;
   }
 
-  .user-name > input:focus,
+  .user > input:focus,
   .user-password > input:focus {
     outline: none;
   }
 
-  .user-name > input::-webkit-input-placeholder{
+  .user > input::-webkit-input-placeholder{
     color: #FFFFFF;
   }
-  .user-name > input::-moz-placeholder{
+  .user > input::-moz-placeholder{
   color: #FFFFFF;
   }
-  .user-name > input:-ms-input-placeholder{
+  .user > input:-ms-input-placeholder{
   color: #FFFFFF;
   }
 

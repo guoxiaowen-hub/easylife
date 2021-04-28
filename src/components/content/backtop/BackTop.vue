@@ -14,8 +14,8 @@
 .back-top {
   text-align: center;
   position: fixed;
-  right: 3px;
-  bottom: 52px;
+  right: 25px;
+  bottom: 85px;
 }
 .back-top > img{
   width: 40px;

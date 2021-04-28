@@ -1,16 +1,16 @@
 <template>
   <div class="deal">
-    <deal-list-item v-for="item in dealList" :dealItem="item"/>
+    <meishi-list-item v-for="item in meishiList" :meishiItem="item"/>
   </div>
 </template>
 
 <script>
-  import DealListItem from "components/content/deal/DealListItem";
+  import MeishiListItem from "components/content/meishi/MeishiListItem";
 
   export default {
     name: "DealList",
     props: {
-      dealList: {
+      meishiList: {
         type: Array,
         default() {
           return []
@@ -18,7 +18,7 @@
       }
     },
     components: {
-      DealListItem
+      MeishiListItem
     }
   }
 </script>

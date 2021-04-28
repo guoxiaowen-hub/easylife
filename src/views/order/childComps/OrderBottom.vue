@@ -12,16 +12,14 @@
     name: "OrderBottom",
     props: {
       orderState: Number,
-      orderIndex: Number
+      orderId: Number
     },
     methods: {
       btnClick() {
         if(this.orderState != 4) {
-          this.$store.commit('orderStateChange', {
-            orderState: this.orderState,
-            orderIndex: this.orderIndex
+          this.$store.dispatch('orderStateChange', this.orderId).then(res => {
+            this.$router.replace('/myorder')
           });
-          this.$router.replace('/myorder')
         }
         else {
           this.$emit('finish')

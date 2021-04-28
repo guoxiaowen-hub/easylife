@@ -18,8 +18,6 @@
   import ProfileFunction from "views/profile/childComps/ProfileFunction";
   import ProfileOrderBar from "views/profile/childComps/ProfileOrderBar";
 
-  import myprofile from 'assets/test/test'
-
   export default {
     name: "profile",
     data() {
@@ -29,7 +27,6 @@
     },
     methods: {
       login() {
-        this.$store.commit('login', myprofile);
         this.profile = this.$store.state.profile;
         this.$router.replace('/profile')
       }

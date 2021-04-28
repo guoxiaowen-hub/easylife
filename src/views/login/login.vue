@@ -17,9 +17,8 @@
       LoginBase
     },
     methods: {
-      login(user, password) {
-        console.log(user, password);
-        this.$emit('login', user, password);
+      login() {
+        this.$emit('login');
         this.$router.replace('/profile')
       },
       signin(user, password) {

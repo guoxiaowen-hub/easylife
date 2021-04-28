@@ -1,6 +1,59 @@
 export default {
   login(state, profile) {
+    if(profile.address == null) {
+      profile.address = []
+    }
+    else {
+      profile.address = JSON.parse(profile.address)
+    }
     state.profile = profile
+    state.Order = profile.order
+    delete state.profile['order']
+    state.Order[0].list.forEach(value => {
+      value.orderTime = value.orderTime.replace("T"," ");
+      if(value.orderType == 0) {
+        value.menu = JSON.parse(value.menu)
+      }
+      if(value.orderType == 1) {
+        value.address = JSON.parse(value.address)
+      }
+    })
+    state.Order[1].list.forEach(value => {
+      value.orderTime = value.orderTime.replace("T"," ");
+      if(value.orderType == 0) {
+        value.menu = JSON.parse(value.menu)
+      }
+      if(value.orderType == 1) {
+        value.address = JSON.parse(value.address)
+      }
+    })
+    state.Order[2].list.forEach(value => {
+      value.orderTime = value.orderTime.replace("T"," ");
+      if(value.orderType == 0) {
+        value.menu = JSON.parse(value.menu)
+      }
+      if(value.orderType == 1) {
+        value.address = JSON.parse(value.address)
+      }
+    })
+    state.Order[3].list.forEach(value => {
+      value.orderTime = value.orderTime.replace("T"," ");
+      if(value.orderType == 0) {
+        value.menu = JSON.parse(value.menu)
+      }
+      if(value.orderType == 1) {
+        value.address = JSON.parse(value.address)
+      }
+    })
+    state.Order[4].list.forEach(value => {
+      value.orderTime = value.orderTime.replace("T"," ");
+      if(value.orderType == 0) {
+        value.menu = JSON.parse(value.menu)
+      }
+      if(value.orderType == 1) {
+        value.address = JSON.parse(value.address)
+      }
+    })
   },
 
   nameChange(state, name) {
@@ -20,6 +73,9 @@ export default {
   },
 
   addressDelete(state, index) {
+    if(state.profile.addressIndex > index) {
+      state.profile.addressIndex -= 1
+    }
     state.profile.address.splice(index, 1)
   },
 
@@ -31,26 +87,57 @@ export default {
     state.myOrderCurrentIndex = index
   },
 
-
-
-
-//  提交订单 模拟
-  subOrder(state, order) {
-    order['orderTime'] = '2021-4-20 22:05';
-    order['orderState'] = 1;
-    order['address'] = state.profile.address[state.profile.addressIndex]
-    order['orderId'] = state.orderId;
-    state.orderId++;
-    state.Order[0].list.push(order);
-    state.Order[1].list.push(order);
+  CategoryCurrentIndexChange(state, index) {
+    state.CategoryCurrentIndex = index
   },
 
-  orderStateChange(state, data) {
-    let order = state.Order[data.orderState].list[data.orderIndex]
-    state.Order[data.orderState].list.splice(data.orderIndex, 1)
-    order.orderState += 1
-    state.Order[data.orderState + 1].list.push(order)
-    state.myOrderCurrentIndex = order.orderState
-  }
+  getOrder(state, order) {
+    state.Order = order
+    state.Order[0].list.forEach(value => {
+      value.orderTime = value.orderTime.replace("T"," ");
+      if(value.orderType == 0) {
+        value.menu = JSON.parse(value.menu)
+      }
+      if(value.orderType == 1) {
+        value.address = JSON.parse(value.address)
+      }
+    })
+    state.Order[1].list.forEach(value => {
+      value.orderTime = value.orderTime.replace("T"," ");
+      if(value.orderType == 0) {
+        value.menu = JSON.parse(value.menu)
+      }
+      if(value.orderType == 1) {
+        value.address = JSON.parse(value.address)
+      }
+    })
+    state.Order[2].list.forEach(value => {
+      value.orderTime = value.orderTime.replace("T"," ");
+      if(value.orderType == 0) {
+        value.menu = JSON.parse(value.menu)
+      }
+      if(value.orderType == 1) {
+        value.address = JSON.parse(value.address)
+      }
+    })
+    state.Order[3].list.forEach(value => {
+      value.orderTime = value.orderTime.replace("T"," ");
+      if(value.orderType == 0) {
+        value.menu = JSON.parse(value.menu)
+      }
+      if(value.orderType == 1) {
+        value.address = JSON.parse(value.address)
+      }
+    })
+    state.Order[4].list.forEach(value => {
+      value.orderTime = value.orderTime.replace("T"," ");
+      if(value.orderType == 0) {
+        value.menu = JSON.parse(value.menu)
+      }
+      if(value.orderType == 1) {
+        value.address = JSON.parse(value.address)
+      }
+    })
+  },
 }
 

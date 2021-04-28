@@ -29,7 +29,7 @@
 
     <!--其他-->
     <div class="other">
-      <div class="methods">
+      <div class="methods" v-if="order.orderType == 1">
         <div>配送方式</div>
         <div>默认快递</div>
       </div>
@@ -145,9 +145,9 @@ button {
   justify-content: space-between;
   font-size: 14px;
   margin-top: 10px;
-  margin-bottom: 10px;
 }
 .total-price {
+  margin-top: 10px;
   display: flex;
   justify-content: space-between;
   font-size: 14px;

@@ -3,12 +3,11 @@
     <my-order-nav-bar class="nav-bar"/>
 
     <my-order-tab-control class="tab-control"
-                 @tabClick="tabClick"
                  :titles="titles"/>
     <scroll class="scroll"
             :probe-type="0"
             :pull-up-load="true">
-      <my-order-info :orderInfo="OrderInfo[currentType]"/>
+      <my-order-info :orderInfo="OrderInfo[$store.state.myOrderCurrentIndex]"/>
     </scroll>
   </div>
 </template>
@@ -40,9 +39,6 @@
       this.titles[3] = '待评价(' + this.OrderInfo[3].list.length + ')'
     },
     methods: {
-      tabClick(index) {
-        this.currentType = index
-      },
     }
   }
 </script>

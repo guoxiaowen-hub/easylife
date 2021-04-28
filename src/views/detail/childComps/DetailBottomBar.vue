@@ -43,19 +43,25 @@
         this.$router.push('/shop')
       },
       buy() {
-        this.$router.push({
-          path: '/neworder',
-          query: {
-            shopName : this.$parent.ShopInfo.name,
-            shopLogo : this.$parent.ShopInfo.shopLogo,
-            shopId : this.$parent.ShopInfo.shopId,
-            price : this.$parent.GoodsInfo.realPrice,
-            goodsName : this.$parent.GoodsInfo.title,
-            goodsImg : this.$parent.topImages[0],
-            goodsId : this.$parent.iid,
-            num : 1,
-          }
-        })
+        if(!this.$store.state.profile.user) {
+          this.$router.push('/profile/login')
+        }
+        else {
+          this.$router.push({
+            path: '/neworder',
+            query: {
+              shopName : this.$parent.ShopInfo.name,
+              shopLogo : this.$parent.ShopInfo.shopLogo,
+              shopId : this.$parent.ShopInfo.shopId,
+              price : this.$parent.GoodsInfo.realPrice,
+              goodsName : this.$parent.GoodsInfo.title,
+              goodsImg : this.$parent.topImages[0],
+              goodsId : this.$parent.iid,
+              num : 1,
+              orderType: 1,
+            }
+          })
+        }
       }
     }
   }

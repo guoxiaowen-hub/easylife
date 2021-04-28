@@ -1,79 +1,78 @@
 <template>
   <div id="category">
     <category-nav-bar/>
-    <tab-control class="tab-control" :titles="titles"  @tabClick="tabClick"/>
+    <category-tab-control class="tab-control"
+                          :titles="titles"/>
     <scroll class="scroll"
             ref="scroll"
             :probe-type="0"
             :pull-up-load="true"
             @pulling-up="loadMore">
-      <goods-list :goods="goods[currentType].list"/>
+      <meishi-list :meishiList="meishi.list" v-if="$store.state.CategoryCurrentIndex == 0"/>
+      <goods-list :goods="goods.list" v-if="$store.state.CategoryCurrentIndex == 2"/>
     </scroll>
   </div>
 </template>
 
 <script>
   import CategoryNavBar from "./childComps/CategoryNavBar";
+  import CategoryTabControl from "@/views/category/childComps/CategoryTabControl";
 
   import Scroll from "components/common/scroll/Scroll";
-  import tabControl from "components/content/tabControl/tabControl";
   import GoodsList from "components/content/goods/GoodsList";
+  import MeishiList from "components/content/meishi/MeishiList";
 
-  import {getCategoryGoods} from "network/category";
+  import {getCategoryGoods,getCategoryMeishi} from "network/category";
 
   export default {
     name: "category",
     data() {
       return {
-        titles: ['食品','服饰','数码'],
+        titles: ['美食','民宿','电商'],
         goods: {
-          'pop' : {page: 0, list: []},
-          'new' : {page: 0, list: []},
-          'sell' : {page: 0, list: []},
+          page: 0,
+          list: [],
         },
-        currentType: 'pop'
+        meishi: {
+          page: 0,
+          list: [],
+        }
       }
     },
     components: {
       CategoryNavBar,
-      tabControl,
+      CategoryTabControl,
       GoodsList,
+      MeishiList,
       Scroll
     },
     created() {
-      //2.请求商品数据
-      this.handleGoods('pop');
-      this.handleGoods('new');
-      this.handleGoods('sell');
+      //1.请求美食数据
+      this.handleMeishi();
+      //2.请求电商数据
+      this.handleGoods();
     },
     methods: {
       /**
        * 事件监听模块
        */
-      tabClick(index) {
-        switch (index) {
-          case 0:
-            this.currentType = 'pop';
-            break;
-          case 1:
-            this.currentType = 'new';
-            break;
-          case 2:
-            this.currentType = 'sell';
-            break
-        }
-      },
       loadMore() {
-        this.handleGoods(this.currentType);
+        this.handleGoods();
       },
       /**
        *网络请求相关
        */
-      handleGoods(type) {
-        const page = this.goods[type].page + 1
-        getCategoryGoods(type, page).then(res => {
-          this.goods[type].list.push(...res.data.data.list);
-          this.goods[type].page += 1;
+      handleMeishi() {
+        this.meishi.page += 1
+        getCategoryMeishi(this.meishi.page).then(res => {
+          this.meishi.list.push(...res.data)
+          this.$refs.scroll.finishPullUp();
+        })
+      },
+      handleGoods() {
+       this.goods.page += 1
+        getCategoryGoods(this.goods.page).then(res => {
+          this.goods.list.push(...res.data.data.list);
           this.$refs.scroll.finishPullUp();
         })
       },
@@ -84,11 +83,12 @@
 <style scoped>
 .tab-control {
   height: 30px;
+  position: relative;
+  z-index: 999;
 }
 
 .scroll {
   height: calc(100vh - 78px);
   overflow: hidden;
 }
-
 </style>

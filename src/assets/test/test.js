@@ -1,6 +1,6 @@
 export default {
   user: '123',
-    password: '123',
+  password: '123',
   myImg: "//s5.mogucdn.com/mlcdn/c45406/180504_89k56fgelh14g4fc13j8jbh6ha909_200x200.jpg",
   myId: 0,
   myName: "狗子",

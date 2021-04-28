@@ -23,7 +23,7 @@
     },
     methods: {
       save() {
-        this.$store.commit('birthdayChange', this.birthday)
+        this.$store.dispatch('update', {birthday : this.birthday})
         this.$router.replace('/profile')
       }
     }
