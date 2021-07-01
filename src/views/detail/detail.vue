@@ -9,7 +9,7 @@
       <detail-swiper class="top-swiper" :topImages="topImages"/>
       <detail-base-info :goods="GoodsInfo"/>
       <detail-shop-info :shop="ShopInfo"/>
-      <detail-comment ref="comment"/>
+      <detail-comment :comments="comments" ref="comment"/>
       <detail-goods-info ref="detail" :goodsInfo="detailInfo"/>
     </scroll>
     <detail-bottom-bar class="bottom-bar"></detail-bottom-bar>
@@ -27,7 +27,7 @@
 
   import Scroll from "components/common/scroll/Scroll";
 
-  import {getDetail, GoodsInfo, ShopInfo} from "network/detail";
+  import {getDetail, getDetailComment, GoodsInfo, ShopInfo} from "network/detail";
 
   export default {
     name: "detail",
@@ -38,6 +38,7 @@
         GoodsInfo: {},
         ShopInfo: {},
         detailInfo: {},
+        comments: {},
         CommentOffsetTop: 0,
         DetailOffsetTop: 0,
         currentIndex: 0,
@@ -56,6 +57,7 @@
     created() {
       this.iid = this.$route.params.id;
       this.handleDetail(this.iid);
+      this.handelDetailComment(this.iid);
     },
     mounted() {
       //目前的误差90左右
@@ -110,6 +112,11 @@
 
           //详情数据
           this.detailInfo = res.data.result.detailInfo;
+        })
+      },
+      handelDetailComment(goodsId) {
+        getDetailComment(goodsId).then(res => {
+          this.comments = res.data
         })
       }
     }

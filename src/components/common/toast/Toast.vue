@@ -30,7 +30,7 @@
   position: fixed;
   background-color: rgba(0,0,0,0.7);
   color: #FFFFFF;
-  left: 106px;
+  left: 30%;
   bottom: 170px;
   padding-top: 6px;
 }

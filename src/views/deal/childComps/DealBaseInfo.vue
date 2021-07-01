@@ -42,8 +42,12 @@ export default {
       this.$emit('loadOver')
     },
     createOrder() {
-      let menu = JSON.stringify(this.$parent.$parent.deal.menu);
-      this.$router.push({
+      if(!this.$store.state.profile.user) {
+        this.$router.push('/profile/login')
+      }
+      else {
+        let menu = JSON.stringify(this.$parent.$parent.deal.menu);
+        this.$router.push({
           path: '/neworder',
           query: {
             shopName : this.$parent.$parent.deal.name,
@@ -58,6 +62,7 @@ export default {
             orderType: 0,
           }
         })
+      }
       }
   }
 }
@@ -104,7 +109,7 @@ export default {
 }
 
 .button {
-  margin-left: 215px;
+  margin-left: 70%;
   text-align: center;
   width: 90px;
   height: 30px;

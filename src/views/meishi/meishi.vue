@@ -8,7 +8,7 @@
             class="scroll">
       <meishi-detail :shopInfo="shopInfo" @loadOver="loadOver"/>
       <meishi-list :dealList="shopInfo.dealList"/>
-      <meishi-comment ref="comment"/>
+      <meishi-comment :comments="comments" ref="comment"/>
     </scroll>
   </div>
 </template>
@@ -21,13 +21,14 @@
 
   import Scroll from "components/common/scroll/Scroll";
 
-  import {getMeishiDetail} from "network/meishi";
+  import {getMeishiDetail,getMeishiComment} from "network/meishi";
 
   export default {
     name: "meishi",
     data() {
       return {
         shopInfo: {},
+        comments: [],
         currentIndex: 0,
         shopId: null,
         dealOffsetTop: 0,
@@ -76,11 +77,17 @@
         getMeishiDetail(shopId).then(res => {
           this.shopInfo = res.data
         })
+      },
+      handelMeishiComment(shopId) {
+        getMeishiComment(shopId).then(res => {
+          this.comments = res.data
+        })
       }
     },
     created() {
       this.shopId = this.$route.params.id;
       this.handelMeishiDetail(this.shopId);
+      this.handelMeishiComment(this.shopId)
     },
     components: {
       MeishiNavBar,

@@ -66,6 +66,7 @@
   }
   .shop-logo {
     width: 30px;
+    height: 30px;
     border: 1px solid rgba(135,147,154,0.3);
     border-radius: 5px;
   }
@@ -78,16 +79,6 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-  .order-finish-state {
-    color: #666666;
-    font-size: 13px;
-    position: absolute;
-    right: 5px;
-    top: 7px
-  }
-  .ing {
-    color: #42B883;
   }
 
   /* 订单基本信息 */

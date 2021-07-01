@@ -2,7 +2,6 @@
   <div class="comment">
     <div class="comment-title">
       <div class="comment-title-info">商品评价({{commentCount}})</div>
-      <div class="comment-title-button">查看全部 ></div>
     </div>
     <div class="comment-content">
       <slot></slot>
@@ -38,11 +37,5 @@
   letter-spacing: 1px;
   font-size: 14px;
   font-weight: bold;
-}
-
-.comment-title-button {
-  letter-spacing: 1px;
-  margin: 10px 10px;
-  font-size: 14px;
 }
 </style>

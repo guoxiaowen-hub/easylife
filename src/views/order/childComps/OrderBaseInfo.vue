@@ -142,6 +142,7 @@
   }
   .shop-logo {
     width: 30px;
+    height: 30px;
     border: 1px solid rgba(135,147,154,0.3);
     border-radius: 5px;
   }

@@ -8,7 +8,7 @@
             class="scroll">
       <deal-base-info :deal="deal" @loadOver="loadOver"/>
       <deal-detail :menu="deal.menu" :totalPrice="deal.price" ref="detail"/>
-      <deal-comment ref="comment"/>
+      <deal-comment :comments="comments" ref="comment"/>
     </scroll>
   </div>
 </template>
@@ -21,7 +21,7 @@
 
   import Scroll from "components/common/scroll/Scroll";
 
-  import {getDealDetail, dataDeal} from "network/deal";
+  import {getDealDetail, getDealComment, dataDeal} from "network/deal";
 
   export default {
     name: "deal",
@@ -30,6 +30,7 @@
         currentIndex: 0,
         dealId: 0,
         deal: {},
+        comments: [],
         detailOffsetTop: 0,
         commentOfferSetTop: 0
       }
@@ -37,6 +38,7 @@
     created() {
       this.dealId = this.$route.params.id;
       this.handelDealDetail(this.dealId);
+      this.handelDealComment(this.dealId);
     },
     methods: {
       /**
@@ -80,6 +82,11 @@
       handelDealDetail(dealId) {
         getDealDetail(dealId).then(res => {
           this.deal = dataDeal(res.data);
+        })
+      },
+      handelDealComment(dealId) {
+        getDealComment(dealId).then(res => {
+          this.comments = res.data
         })
       }
     },

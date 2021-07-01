@@ -47,20 +47,26 @@
           this.$router.push('/profile/login')
         }
         else {
-          this.$router.push({
-            path: '/neworder',
-            query: {
-              shopName : this.$parent.ShopInfo.name,
-              shopLogo : this.$parent.ShopInfo.shopLogo,
-              shopId : this.$parent.ShopInfo.shopId,
-              price : this.$parent.GoodsInfo.realPrice,
-              goodsName : this.$parent.GoodsInfo.title,
-              goodsImg : this.$parent.topImages[0],
-              goodsId : this.$parent.iid,
-              num : 1,
-              orderType: 1,
-            }
-          })
+          console.log(this.$store.state.profile.address);
+          if(this.$store.state.profile.address.length == 0) {
+            this.$router.push('/raddress')
+          }
+          else {
+            this.$router.push({
+              path: '/neworder',
+              query: {
+                shopName : this.$parent.ShopInfo.name,
+                shopLogo : this.$parent.ShopInfo.shopLogo,
+                shopId : this.$parent.ShopInfo.shopId,
+                price : this.$parent.GoodsInfo.realPrice,
+                goodsName : this.$parent.GoodsInfo.title,
+                goodsImg : this.$parent.topImages[0],
+                goodsId : this.$parent.iid,
+                num : 1,
+                orderType: 1,
+              }
+            })
+          }
         }
       }
     }
@@ -102,7 +108,7 @@
 }
 
 .bar-buy > div {
-  font-size: 2px;
+  font-size: 12px;
   color: #FFFFFF;
 }
 </style>

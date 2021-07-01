@@ -29,10 +29,9 @@
 <style scoped>
   .goods {
     width: 100vw;
-    padding: 5px 1px;
+    padding-left: 4px;
     display: flex;
     flex-wrap: wrap;
-
     overflow: hidden;
   }
 </style>

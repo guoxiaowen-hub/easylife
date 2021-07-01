@@ -5,7 +5,7 @@
       <div>收藏</div>
     </div>
     <div class="comment">
-      <img src="~assets/img/profile/comment.png" alt="">
+      <img src="~assets/img/profile/comment.png" alt="" @click="commentClick">
       <div>评价</div>
     </div>
     <div class="setting">
@@ -39,6 +39,14 @@
             this.toastIsShow = false;
           }, 1000)
         }
+      },
+      commentClick() {
+        if(!this.$store.state.profile.myId) {
+          this.$router.push('/profile/login')
+        }
+        else {
+          this.$router.push('/mycomment')
+        }
       }
     }
   }
@@ -47,6 +55,7 @@
 <style scoped>
 .profile-function {
   display: flex;
+  justify-content: space-evenly;
 }
 
 .setting {

@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
 
 const Home = () => import('views/home/home')
 const Category = () => import('views/category/category')
@@ -11,6 +11,10 @@ const Address = () => import('views/raddress/raddress')
 const Shop = () => import('views/shop/shop')
 const Order = () => import('views/order/order')
 const NewOrder = () => import('views/neworder/neworder')
+const Comment = () => import('views/comment/comment')
+const MyComment = () => import('views/mycomment/mycomment')
+const OrderUse = () => import('views/orderuse/orderuse')
+const Search = () => import('views/search/search')
 
 const Login = () => import('views/login/login')
 const Setting = () => import('views/setting/setting')
@@ -92,11 +96,27 @@ const routes = [
   {
     path: '/neworder',
     component: NewOrder
+  },
+  {
+    path: '/comment/:orderid',
+    component: Comment
+  },
+  {
+    path: '/mycomment',
+    component: MyComment
+  },
+  {
+    path: '/orderuse/:orderid',
+    component: OrderUse
+  },
+  {
+    path: '/search',
+    component: Search
   }
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(),
   routes
 })
 

@@ -1,9 +1,7 @@
 <template>
   <div  class="detail-comment">
-    <comment :commentCount="3">
-      <comment-item></comment-item>
-      <comment-item></comment-item>
-      <comment-item></comment-item>
+    <comment :commentCount="comments.length">
+      <comment-item v-for="item in comments" :comment="item"/>
     </comment>
   </div>
 </template>
@@ -12,6 +10,14 @@
   import {Comment, CommentItem} from "components/content/comment"
   export default {
     name: "DetailComment",
+    props: {
+      comments: {
+        type: Object,
+        default() {
+          return {}
+        }
+      }
+    },
     components: {
       Comment,
       CommentItem

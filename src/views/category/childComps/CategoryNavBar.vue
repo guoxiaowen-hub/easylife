@@ -7,13 +7,13 @@
         </div>
     </template>
     <template #center>
-      <div class="search">
+      <div class="search" @click="search">
         <img class="search-img" src="~assets/img/category/navbar/search.png">
         <div class="search-msg">杨国福麻辣烫(外卖满25减5123123123132)</div>
       </div>
     </template>
     <template #right>
-        <div class="more">
+        <div class="more" @click="order">
           <img class="more-img" src="~assets/img/category/navbar/order.png" >
         </div>
     </template>
@@ -26,6 +26,14 @@
     name: "CategoryNavBar",
     components: {
       NavBar
+    },
+    methods: {
+      search() {
+          this.$router.push('/search')
+      },
+      order() {
+        this.$router.push('/myorder')
+      }
     }
   }
 </script>

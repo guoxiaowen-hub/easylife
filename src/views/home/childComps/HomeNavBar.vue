@@ -7,7 +7,7 @@
         </div>
     </template>
     <template #center>
-      <div class="search">
+      <div class="search" @click="search">
         <img class="search-img" src="~assets/img/home/navbar/search.png">
         <div class="search-msg">杨国福麻辣烫(外卖满25减5123123123132)</div>
       </div>
@@ -26,6 +26,11 @@
     name: "HomeNavBar",
     components: {
       NavBar
+    },
+    methods: {
+      search() {
+        this.$router.push('/search')
+      }
     }
   }
 </script>

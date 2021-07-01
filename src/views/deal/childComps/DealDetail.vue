@@ -1,14 +1,20 @@
 <template>
   <div class="deal-detail">
     <div class="head">
-      <div>----------------------------------------------------------------</div>
+      <div>---------------------------------------------------</div>
       美食详情
-      <div>----------------------------------------------------------------</div>
+      <div>---------------------------------------------------</div>
     </div>
 
   <div class="body">
     <div class="body-content" v-for="fItem in menu">
-      <div class="title" v-if="fItem.length !== 1">
+      <div class="right" v-if="fItem.length === 1 && fItem[0].type !== '0'">
+        <span>{{fItem[0].content}}</span>
+        <span>数量/规格{{fItem[0].specification}}</span>
+        <span>单价￥{{fItem[0].price}}</span>
+        <span>总计￥{{fItem[0].total}}</span>
+      </div>
+      <div class="title" v-else-if="fItem.length !== 1">
         {{fItem[0].content}}
       </div>
       <div class="right">
@@ -84,7 +90,6 @@
   padding: 7px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
-
 .right span {
   margin: 1px 3px;
 }

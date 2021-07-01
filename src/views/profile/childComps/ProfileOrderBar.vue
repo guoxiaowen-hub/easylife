@@ -53,10 +53,11 @@ export default {
 
 <style scoped>
 .profile-order-bar {
+  width: 95vw;
+  height: 64px;
   display: flex;
-  justify-content: space-evenly;
-  padding-top: 4px;
-  padding-left: 3px;
+  padding-top: 7px;
+  padding-right: 5%;
 }
 .my-order > img,
 .w-pay > img,
@@ -70,17 +71,17 @@ export default {
 .w-use > div,
 .w-comment > div,
 .finish > div {
+  text-align: center;
   font-size: 14px;
   width: 70px;
-  text-align: left;
-  margin-left: -6px;
+  padding-right: 2px;
 }
 
 .my-order > div {
+  width: 85px;
+  text-align: center;
   font-size: 14px;
-  width: 70px;
-  text-align: left;
-  margin-left: -12px;
+  padding-right: 12px;
 }
 
 .my-order,
@@ -89,8 +90,9 @@ export default {
 .w-comment,
 .finish{
   width: 30px;
+  height: 40px;
   text-align: center;
-  margin: 1px;
+  flex: 1;
 }
 
 </style>

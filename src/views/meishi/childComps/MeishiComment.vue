@@ -1,19 +1,7 @@
 <template>
   <div class="Meishi-comment">
-    <comment :commentCount="10">
-      <comment-item></comment-item>
-      <comment-item></comment-item>
-      <comment-item></comment-item>
-      <comment-item></comment-item>
-      <comment-item></comment-item>
-      <comment-item></comment-item>
-      <comment-item></comment-item>
-      <comment-item></comment-item>
-      <comment-item></comment-item>
-      <comment-item></comment-item>
-      <comment-item></comment-item>
-      <comment-item></comment-item>
-      <comment-item></comment-item>
+    <comment :commentCount="comments.length">
+      <comment-item v-for="item in comments" :comment="item"/>
     </comment>
   </div>
 </template>
@@ -22,6 +10,14 @@
   import {Comment, CommentItem} from "components/content/comment"
   export default {
     name: "MeishiComment",
+    props: {
+      comments: {
+        type: Object,
+        default() {
+          return {}
+        }
+      }
+    },
     components: {
       Comment,
       CommentItem

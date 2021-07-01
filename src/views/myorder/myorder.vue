@@ -55,6 +55,6 @@
   }
 
   .scroll {
-    height: calc(100vh - 70px);
+    height: calc(100vh - 115px);
   }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="meishi-list-item">
-    <div class="container">
-      <div class="click-deal" @click="dealClick">
+    <div class="container" @click="dealClick">
+      <div class="click-deal">
         <img class="img" :src="deal.dealImg" alt="">
         <div class="info">
           <div class="title">{{deal.titles}}</div>

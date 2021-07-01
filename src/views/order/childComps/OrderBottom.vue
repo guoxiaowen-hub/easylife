@@ -17,9 +17,17 @@
     methods: {
       btnClick() {
         if(this.orderState != 4) {
-          this.$store.dispatch('orderStateChange', this.orderId).then(res => {
-            this.$router.replace('/myorder')
-          });
+          if(this.orderState == 3){
+            this.$router.replace('/comment/'+this.orderId)
+          }
+          else if(this.orderState == 2){
+            this.$router.replace('/orderuse/'+this.orderId)
+          }
+          else {
+            this.$store.dispatch('orderStateChange', this.orderId).then(res => {
+              this.$router.replace('/myorder')
+            });
+          }
         }
         else {
           this.$emit('finish')

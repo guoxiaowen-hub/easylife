@@ -91,7 +91,6 @@
 
   .top {
     display: flex;
-    justify-content: space-around;
     color: #FFFFFF;
   }
   .top > div {
@@ -112,6 +111,7 @@
 
   .table {
     width: 80vw;
+    text-align: center;
     background-color: #ff5777;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
@@ -120,7 +120,7 @@
 
   .user,
   .user-password {
-    padding-top: 35px;
+    padding-top: 20px;
     color: #FFFFFF;
     letter-spacing: 5px;
     padding-left: 14px;
@@ -128,6 +128,7 @@
 
   .user > input,
   .user-password > input {
+    width: 50%;
     background-color: #ff5777;
     border: 0px;
     border-bottom: 1px solid #FFFFFF;
@@ -166,8 +167,7 @@
     height: 28px;
     border: #FFFFFF 3px solid;
     text-align: center;
-    margin-top: 17px;
-    margin-left: 93px;
+    margin: 15px 33% 1px;
     padding-top: 2px;
     padding-left: 3px;
     border-radius: 8px;

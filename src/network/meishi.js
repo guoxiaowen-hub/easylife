@@ -5,3 +5,13 @@ export function getMeishiDetail(shopid) {
     url: "/meishi/" + shopid,
   })
 }
+
+export function getMeishiComment(Id) {
+  return request1({
+    url: '/getcomment',
+    params: {
+      type: 'shop',
+      Id,
+    }
+  })
+}

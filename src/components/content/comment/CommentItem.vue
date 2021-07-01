@@ -2,11 +2,11 @@
   <div class="comment-item">
     <div class="userInfo">
       <img class="user-img" src="~assets/test/1.webp.jpg" alt="">
-      <div class="user-name">我是憨憨</div>
+      <div class="user-name">{{comment.name}}</div>
     </div>
     <div class="comment-content">
       <div class="content-text">
-        我是哈哈哈哈哈哈哈哈哈哈哈哈芜湖起飞我是哈哈哈哈哈哈哈哈哈哈哈哈芜湖起飞我是哈哈哈哈哈哈哈哈哈哈哈哈芜湖起飞
+        {{comment.content}}
       </div>
       <div class="content-img">
         <img src="~assets/test/test1.jpg" alt="">
@@ -18,7 +18,16 @@
 
   <script>
   export default {
-    name: "CommentItem"
+    name: "CommentItem",
+    props: {
+      comment: {
+        type: Object,
+        default() {
+          return {
+          }
+        }
+      }
+    }
   }
 </script>
 
@@ -30,6 +39,7 @@
 
 .userInfo > .user-img {
   width: 30px;
+  height: 30px;
   border-radius: 50%;
 }
 

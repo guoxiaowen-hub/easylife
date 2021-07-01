@@ -11,7 +11,10 @@
     "better-scroll": "^2.2.1",
     "core-js": "^3.6.5",
     "input": "^1.0.1",
+    "qrcodejs2": "^0.0.2",
     "vue": "^3.0.0",
+    "vue-cordova": "^0.1.2",
+    "vue-qr": "^2.4.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },

@@ -1,10 +1,20 @@
-import {request} from "./request";
+import {request, request1} from "./request";
 
 export  function getDetail(iid) {
   return request({
     url: '/detail',
     params: {
       iid
+    }
+  })
+}
+
+export function getDetailComment(Id) {
+  return request1({
+    url: '/getcomment',
+    params: {
+      type: 'deal',
+      Id,
     }
   })
 }

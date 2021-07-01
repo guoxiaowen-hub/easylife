@@ -56,7 +56,4 @@
 </script>
 
 <style scoped>
-  .scroll {
-
-  }
 </style>

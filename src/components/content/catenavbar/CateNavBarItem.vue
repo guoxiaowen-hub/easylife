@@ -15,8 +15,6 @@ export default {
     width: 100vw;
     flex-shrink: 0;
     display: flex;
-    flex-flow: wrap;
-    justify-content: left;
-    padding-left: 30px;
+    justify-content: space-evenly;
   }
 </style>

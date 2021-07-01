@@ -1,5 +1,5 @@
 <template>
-  <div class="shop-nav-bar">
+  <div class="order-nav-bar">
     <nav-bar class="nav-bar">
       <template #left>
         <div class="nav-bar-left" @click="backClick">
@@ -17,7 +17,7 @@
   import NavBar from "components/common/navbar/NavBar";
 
   export default {
-    name: "ShopNavBar",
+    name: "OrderNavBar",
     components: {
       NavBar
     },

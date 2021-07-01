@@ -65,8 +65,8 @@ export default {
       else if(order.orderType == 0) {
         order['address'] = null
       }
-      console.log(order);
       subOrder(order).then(res => {
+        context.commit("myOrderCurrentIndexChange", 1)
         context.commit("getOrder", res.data)
         resolve()
       });
@@ -79,6 +79,7 @@ export default {
         userId: context.state.profile.myId,
         orderId
       }).then(res => {
+        context.commit("myOrderCurrentIndexChange", context.state.myOrderCurrentIndex+1)
         context.commit("getOrder", res.data)
         resolve()
       })

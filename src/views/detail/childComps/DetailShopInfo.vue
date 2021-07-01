@@ -25,6 +25,7 @@
     },
     methods: {
       shopIn() {
+        console.log(this.shop);
         this.$router.push('/shop')
       }
     }

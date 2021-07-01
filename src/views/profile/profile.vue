@@ -49,17 +49,19 @@
 #profile {
   height: 100vh;
   background-color: #F4F4F4;
+  overflow: hidden;
 }
 
 .top-box {
   background-color: #ff5777;
+  overflow: hidden;
   height: 30vh;
 }
 
 .bottom-box {
   height: 10vh;
   width: 90vw;
-  border: 1px solid rgba(135,147,154,0.2);;
+  border: 1px solid rgba(135,147,154,0.2);
   background-color: #FFFFFF;
   border-radius: 8px;
   position: absolute;

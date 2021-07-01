@@ -6,6 +6,16 @@ export function getDealDetail(dealId) {
   })
 }
 
+export function getDealComment(Id) {
+  return request1({
+    url: '/getcomment',
+    params: {
+      type: 'deal',
+      Id,
+    }
+  })
+}
+
 export function dataDeal(res) {
   const deal = res
   deal.menu = JSON.parse(deal.menu)
@@ -13,8 +23,15 @@ export function dataDeal(res) {
   let count = -1
   let oMenu = deal.menu
   let nMenu = []
-  oMenu.forEach(value => {
-    if(value.type === '0') {
+  oMenu.forEach((value,index) => {
+    if(index == 0 && value.type !== '0')
+    {
+      let list = []
+      list.push(value)
+      nMenu.push(list)
+      count += 1
+    }
+    else if(value.type === '0') {
       let list = []
       list.push(value)
       nMenu.push(list)
@@ -25,5 +42,6 @@ export function dataDeal(res) {
     }
   })
   deal.menu = nMenu
+  console.log(deal.menu);
   return deal
 }

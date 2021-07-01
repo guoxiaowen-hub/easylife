@@ -9,7 +9,7 @@
             :pull-up-load="true"
             @pulling-up="loadMore">
       <meishi-list :meishiList="meishi.list" v-if="$store.state.CategoryCurrentIndex == 0"/>
-      <goods-list :goods="goods.list" v-if="$store.state.CategoryCurrentIndex == 2"/>
+      <goods-list :goods="goods.list" v-if="$store.state.CategoryCurrentIndex == 1"/>
     </scroll>
   </div>
 </template>
@@ -28,7 +28,7 @@
     name: "category",
     data() {
       return {
-        titles: ['美食','民宿','电商'],
+        titles: ['美食','电商'],
         goods: {
           page: 0,
           list: [],
@@ -57,7 +57,12 @@
        * 事件监听模块
        */
       loadMore() {
-        this.handleGoods();
+        if(this.$store.state.CategoryCurrentIndex === 0) {
+          this.handleMeishi();
+        }
+        else if(this.$store.state.CategoryCurrentIndex === 2) {
+          this.handleGoods();
+        }
       },
       /**
        *网络请求相关
@@ -88,7 +93,7 @@
 }
 
 .scroll {
-  height: calc(100vh - 78px);
+  height: calc(100vh - 123px);
   overflow: hidden;
 }
 </style>

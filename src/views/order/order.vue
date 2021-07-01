@@ -50,7 +50,6 @@
           this.orderInfo = item;
         }
       })
-      console.log(this.orderInfo);
     }
   }
 </script>
